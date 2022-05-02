@@ -23,23 +23,22 @@ module.exports = {
 };
 
 
-createDreamTeam = (members) => {
-    let name = '';
-    if (typeof(members) != 'object') {
-        return false
-    } else {
+function createDreamTeam(members) {
+    if (!Array.isArray(members)) return false;
 
-    }
-    for (let key in members) {
-        if (members.length == 0 || !members[key].includes('string')) {
-            return false;
-        } else {
-            if (typeof(members[key]) === 'string') {
-                name += members[key].trim()[0].toUpperCase();
-            }
+    let dreamTeam = [];
 
+    for (let i = 0; i < members.length; i++) {
+        if (typeof members[i] === 'string') {
+            dreamTeam.push(members[i].trim()[0].toUpperCase());
         }
-        return name.split('').sort().join('');
     }
 
+    dreamTeam.sort((a, b) => {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0;
+    });
+
+    return dreamTeam.join('');
 }

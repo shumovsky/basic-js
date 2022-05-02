@@ -22,11 +22,16 @@ module.exports = {
 };
 
 
-getSumOfDigits = (n) => {
-    let count = 0;
-    let arr = n.toString(10).split('').map(int => parseInt(int, 10));
-    for (let i = 0; i < arr.length; i++) {
-        count += arr[i]
+function getSumOfDigits(n) {
+    let str = n.toString();
+    let sum = 0;
+    for (let i = 0; i < str.length; i++) {
+        sum += +str[i];
     }
-    return count;
+
+    if (sum.toString().length > 1) {
+        sum = getSumOfDigits(sum);
+    }
+
+    return sum;
 }

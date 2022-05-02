@@ -20,6 +20,13 @@ module.exports = {
     sortByHeight
 };
 
-sortByHeight = (a, b) => {
-    return a > b ? 1 : b > a ? -1 : 0;
+function sortByHeight(arr) {
+    let sortedArr = arr.filter(item => item !== -1).sort((a, b) => a - b);
+    return arr.map(item => {
+        if (item !== -1) {
+            return sortedArr.shift();
+        } else {
+            return item;
+        }
+    })
 }
